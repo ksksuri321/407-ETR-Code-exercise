@@ -1,17 +1,22 @@
 # 407-ETR-Code-exercise
-407 ETR Code exercise
 
 In order to test this you need a Postman for below End Point Urls
 =======================================================================================================
 End Point URL to load the data into system to caluculate CostOfTrip
 
 Its a POST Request
+
 http://localhost:8080/loaddata
+
 copy and paste the content of Interchanges in postman in Body => raw => JSON as a post request
+
 ======================================================================================================
 Its a GET Request
+
 http://localhost:8080/costoftrip
+
 copy and paste the below requests in postman in Body => raw => JSON as a get request
+
 Request Payload 1
 {
     "startName": "Salem Road", 
@@ -23,45 +28,67 @@ Response 1
     "distance": 107.96400000000001,
     "cost": 26.991000000000003
 }
+
 ==================================================================================================
+
 http://localhost:8080/costoftrip
+
 Request 2
+
 {
     "startName": "QEW", 
     "endName": "Salem Road"
 }
+
 Response 2
+
 {
     "distance": 115.27700000000002,
     "cost": 28.819250000000004
 }
+
 =================================================================================================
+
 http://localhost:8080/costoftrip
+
 Request 3
+
 {
     "startName": "Highway 400", 
     "endName": "QEW"
 }
+
 Response 3
+
 {
     "distance": 67.74799999999999,
     "cost": 16.936999999999998
 }
+
 ================================================================================================
+
 http://localhost:8080/costoftrip
+
 Request 4
+
 {
     "startName": "QEW", 
     "endName": "Highway 400"
 }
+
 Response 4
+
 {
     "distance": 68.93,
     "cost": 17.2325
 }
+
 ==============================================================================================
+
 To get the toll list with ID and Name
+
 http://localhost:8080/tolls
+
 {
     "Dundas Street": "2",
     "QEW": "1",
