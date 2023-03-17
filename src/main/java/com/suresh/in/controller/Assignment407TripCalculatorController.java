@@ -1,6 +1,8 @@
 package com.suresh.in.controller;
 
 import java.util.Map;
+import java.util.TreeMap;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import com.suresh.in.bean.InterChangesBean;
 import com.suresh.in.bean.Location;
 import com.suresh.in.bean.RequestInput;
 import com.suresh.in.bean.TollMaster;
+import com.suresh.in.bean.ToolTreeMapMaster;
 
 @RestController
 public class Assignment407TripCalculatorController {
@@ -28,7 +31,8 @@ public class Assignment407TripCalculatorController {
 		if (body.getLocations() != null)
 		{
 			Map<String, Location> locations = body.getLocations();
-			locations.forEach( (k,v) -> {TollMaster.putMasterToll(v.getName(), k);});
+			locations.forEach( (k,v) -> {TollMaster.putMasterToll(v.getName(), k);
+			ToolTreeMapMaster.putMasterToll(new Integer(k), v.getName());});
 			
 			locations.forEach( (k,v) -> {
 					CostTripMaster.putTripMaster(k+"-"+v.getRoutes().get(0).getToId(), v.getRoutes().get(0).getDistance());
@@ -142,12 +146,12 @@ public class Assignment407TripCalculatorController {
 	}
 	
 	@GetMapping("/tolls")
-	public ResponseEntity<Map<String, String>> getTollsList()
+	public ResponseEntity<TreeMap<Integer, String>> getTollsList()
 	{
-		if (TollMaster.getMasterToll() != null)
+		if (ToolTreeMapMaster.getMasterToll() != null)
 		{
-			Map tollsMap = TollMaster.getMasterToll();
-			return new ResponseEntity(TollMaster.getMasterToll(), null, HttpStatus.OK);
+			TreeMap tollsMap = ToolTreeMapMaster.getMasterToll();
+			return new ResponseEntity(ToolTreeMapMaster.getMasterToll(), null, HttpStatus.OK);
 		}
 		else
 		{
