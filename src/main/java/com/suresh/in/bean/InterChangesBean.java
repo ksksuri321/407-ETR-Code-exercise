@@ -1,16 +1,15 @@
 package com.suresh.in.bean;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.TreeMap;
 
 public class InterChangesBean{
-	Map<String, Location> locations = new HashMap<String, Location>();
+	TreeMap<Integer, Location> locations = new TreeMap<Integer, Location>();
 
-	public Map<String, Location> getLocations() {
+	public TreeMap<Integer, Location> getLocations() {
 		return locations;
 	}
 
-	public void setLocations(Map<String, Location> locations) {
+	public void setLocations(TreeMap<Integer, Location> locations) {
 		this.locations = locations;
 	}
 	}

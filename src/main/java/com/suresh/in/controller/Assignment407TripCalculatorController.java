@@ -17,7 +17,7 @@ import com.suresh.in.bean.InterChangesBean;
 import com.suresh.in.bean.Location;
 import com.suresh.in.bean.RequestInput;
 import com.suresh.in.bean.TollMaster;
-import com.suresh.in.bean.ToolTreeMapMaster;
+import com.suresh.in.bean.TollTreeMapMaster;
 
 @RestController
 public class Assignment407TripCalculatorController {
@@ -30,9 +30,9 @@ public class Assignment407TripCalculatorController {
 	{
 		if (body.getLocations() != null)
 		{
-			Map<String, Location> locations = body.getLocations();
+			Map<Integer, Location> locations = body.getLocations();
 			locations.forEach( (k,v) -> {TollMaster.putMasterToll(v.getName(), k);
-			ToolTreeMapMaster.putMasterToll(new Integer(k), v.getName());});
+			TollTreeMapMaster.putMasterToll(k, v.getName());});
 			
 			locations.forEach( (k,v) -> {
 					CostTripMaster.putTripMaster(k+"-"+v.getRoutes().get(0).getToId(), v.getRoutes().get(0).getDistance());
@@ -61,8 +61,8 @@ public class Assignment407TripCalculatorController {
 		if(TollMaster.getMasterToll().get(startName) != null &&
 				TollMaster.getMasterToll().get(endName) != null)
 		{
-			int start = Integer.parseInt(TollMaster.getMasterToll().get(startName));
-			int end = Integer.parseInt(TollMaster.getMasterToll().get(endName));
+			int start = TollMaster.getMasterToll().get(startName);
+			int end = TollMaster.getMasterToll().get(endName);
 			double  distance = 0;
 			double cost = 0;
 			//System.out.println(start+" - "+end);
@@ -148,10 +148,10 @@ public class Assignment407TripCalculatorController {
 	@GetMapping("/tolls")
 	public ResponseEntity<TreeMap<Integer, String>> getTollsList()
 	{
-		if (ToolTreeMapMaster.getMasterToll() != null)
+		if (TollTreeMapMaster.getMasterToll() != null)
 		{
-			TreeMap tollsMap = ToolTreeMapMaster.getMasterToll();
-			return new ResponseEntity(ToolTreeMapMaster.getMasterToll(), null, HttpStatus.OK);
+			TreeMap tollsMap = TollTreeMapMaster.getMasterToll();
+			return new ResponseEntity(TollTreeMapMaster.getMasterToll(), null, HttpStatus.OK);
 		}
 		else
 		{

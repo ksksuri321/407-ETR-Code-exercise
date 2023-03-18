@@ -1,10 +1,10 @@
 package com.suresh.in.bean;
 
 public class Route{
- public int getToId() {
+ public Integer getToId() {
 		return toId;
 	}
-	public void setToId(int toId) {
+	public void setToId(Integer toId) {
 		this.toId = toId;
 	}
 	public double getDistance() {
@@ -31,7 +31,7 @@ public class Route{
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
- private int toId;
+ private Integer toId;
  private double distance;
  private boolean exit;
  private boolean enter;
